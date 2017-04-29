@@ -68,7 +68,7 @@ int Arc::intersect(Shape &s2) const
     }
 
     // идем по фигуре с шагом epsStep и считаем, сколько точек попало в область s2
-    for(double t = startAngle; t <= finishAngle; t+=epsStep)
+    for(double t = startAngle; t < finishAngle; t+=epsStep)
     {
         x = radius * cos(t) + center_coordinates.x;
         y = radius * sin(t) + center_coordinates.y;

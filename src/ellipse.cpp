@@ -23,7 +23,7 @@ int Ellipse::intersect(Shape &s2) const
             return -1;
     }
 
-    for(double t = 0; t <= 2*M_PI; t+=epsStep)
+    for(double t = 0; t < 2*M_PI; t+=epsStep)
     {
         x = aHalfAxis * cos(t) + center_coordinates.x;
         y = bHalfAxis * sin(t) + center_coordinates.y;
