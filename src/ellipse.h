@@ -24,6 +24,8 @@ public:
     void print(std::ostream &os) override;
 
     bool isPointOnBorder(const Point &p) const override;
+
+    bool match(const Ellipse& e) const;
 };
 
 #endif // ELLIPSE_H

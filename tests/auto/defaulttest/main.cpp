@@ -1,4 +1,9 @@
-#include "tst_roundtest.h"
+#include "tst_round_round.h"
+#include "tst_round_ellipse.h"
+#include "tst_round_arc.h"
+#include "tst_ellipse_ellipse.h"
+#include "tst_ellipse_arc.h"
+#include "tst_arc_arc.h"
 
 #include <gtest/gtest.h>
 

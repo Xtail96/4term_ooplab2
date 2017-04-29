@@ -2,13 +2,15 @@
 #define SHAPE_H
 #include <string>
 #include <vector>
-#include <math.h>
+#include <cmath>
 #include <fstream>
-#include <typeinfo>
+#include <limits>
 
 #include "point.h"
 
-const double eps = 0.00001;
+const double eps = 0.0001;
+const double epsStep = eps / 10;
+
 
 class Shape
 {

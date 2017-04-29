@@ -12,22 +12,36 @@ int Ellipse::intersect(Shape &s2) const
 {
     int intersectCount = 0;
     double x, y;
-    for(double t = 0; t <= 2*M_PI; t+=eps)
+    bool inside = false;
+
+    // проверка на совпадающую фигуру
+    Ellipse* e = dynamic_cast<Ellipse*>(&s2);
+    if (e)
+    {
+        if (match(*e))
+            // фигуры совпадают
+            return -1;
+    }
+
+    for(double t = 0; t <= 2*M_PI; t+=epsStep)
     {
         x = aHalfAxis * cos(t) + center_coordinates.x;
         y = bHalfAxis * sin(t) + center_coordinates.y;
 
         Point p(x, y);
 
-        if (y > 0.89442 && x < -0.89442)
-        {
-            int wtf = 1337;
-            wtf++;
-        }
-
         if(s2.isPointOnBorder(p))
         {
-            intersectCount++;
+            if (!inside)
+            {
+                inside = true;
+                intersectCount++;
+            }
+        }
+        else
+        {
+            if (inside)
+                inside = false;
         }
     }
     return intersectCount;
@@ -56,4 +70,13 @@ bool Ellipse::isPointOnBorder(const Point &p) const
     double dy = (r.y - center_coordinates.y) / bHalfAxis;
     bool borderFlag = fabs(pow(dx, 2) + pow(dy, 2) - 1) < 1.5*eps;
     return borderFlag;
+}
+
+bool Ellipse::match(const Ellipse &e) const
+{
+    bool bCenter = (center_coordinates == e.center_coordinates);
+    bool a_ = AreSame(aHalfAxis, e.aHalfAxis);
+    bool b_ = AreSame(bHalfAxis, e.bHalfAxis);
+
+    return (bCenter && a_ && b_);
 }

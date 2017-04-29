@@ -22,6 +22,8 @@ public:
     void print(std::ostream &os) override;
 
     bool isPointOnBorder(const Point &p) const override;
+
+    bool match(const Arc &other) const;
 };
 
 #endif // ARC_H

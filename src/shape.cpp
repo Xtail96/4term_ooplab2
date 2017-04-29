@@ -2,6 +2,11 @@
 
 unsigned int Shape::counter = 0;
 
+bool AreSame(double a, double b)
+{
+    return std::fabs(a - b) < std::numeric_limits<double>::epsilon();
+}
+
 void Shape::setColor(std::string color)
 {
     current_color = color;

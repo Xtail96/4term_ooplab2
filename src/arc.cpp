@@ -37,11 +37,38 @@ bool Arc::isPointOnBorder(const Point &p) const
     return (borderFlag && startAngleFlag && finishAngleFlag);
 }
 
+bool Arc::match(const Arc &other) const
+{
+    bool bCenter = (center_coordinates == other.center_coordinates);
+    bool bRadius = AreSame(radius, other.radius);
+
+    double s1 = fmod(startAngle + current_angle, 2*M_PI);
+    double f1 = fmod(finishAngle + current_angle, 2*M_PI);
+    double s2 = fmod(other.startAngle + other.current_angle, 2*M_PI);
+    double f2 = fmod(other.finishAngle + other.current_angle, 2*M_PI);
+
+    bool bAngle = !((s2 > f1) || (f2 < s1));
+
+    return (bCenter && bRadius && bAngle);
+}
+
 int Arc::intersect(Shape &s2) const
 {
     int intersectCount = 0;
     double x, y;
-    for(double t = startAngle; t <= finishAngle; t+=eps)
+    bool inside = false;
+
+    // проверка на совпадающую фигуру
+    Arc* arc = dynamic_cast<Arc*>(&s2);
+    if (arc)
+    {
+        if (match(*arc))
+            // фигуры совпадают
+            return -1;
+    }
+
+    // идем по фигуре с шагом epsStep и считаем, сколько точек попало в область s2
+    for(double t = startAngle; t <= finishAngle; t+=epsStep)
     {
         x = radius * cos(t) + center_coordinates.x;
         y = radius * sin(t) + center_coordinates.y;
@@ -50,8 +77,18 @@ int Arc::intersect(Shape &s2) const
 
         if(s2.isPointOnBorder(p))
         {
-            intersectCount++;
+            if (!inside)
+            {
+                inside = true;
+                intersectCount++;
+            }
+        }
+        else
+        {
+            if (inside)
+                inside = false;
         }
     }
+
     return intersectCount;
 }

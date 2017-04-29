@@ -13,7 +13,12 @@ HEADERS +=     \
     ../../../src/point.h \
     ../../../src/round.h \
     ../../../src/shape.h \
-    tst_roundtest.h
+    tst_round_round.h \
+    tst_arc_arc.h \
+    tst_ellipse_arc.h \
+    tst_ellipse_ellipse.h \
+    tst_round_arc.h \
+    tst_round_ellipse.h
 
 SOURCES +=     main.cpp \
     ../../../src/arc.cpp \
