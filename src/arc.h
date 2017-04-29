@@ -10,7 +10,7 @@ protected:
     double finishAngle;
     double radius;
 public:
-    Arc(double x, double y, double startAngle, double finishAngle, double radius, double angle = 0, double scale = 1, std::string color = "#000" )
+    Arc(double x, double y, double startAngle, double finishAngle, double radius, double angle = 0, double scale = 1, Color color = Color(0, 0, 0))
         : Shape(x, y, angle, scale, color), startAngle(startAngle), finishAngle(finishAngle), radius(radius){}
     virtual ~Arc() {}
     void scale(double scale) override;

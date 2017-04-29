@@ -7,11 +7,11 @@ bool AreSame(double a, double b)
     return std::fabs(a - b) < std::numeric_limits<double>::epsilon();
 }
 
-void Shape::setColor(std::string color)
+void Shape::setColor(Color color)
 {
     current_color = color;
 }
-std::string Shape::getColor() const
+Color Shape::getColor() const
 {
     return current_color;
 }

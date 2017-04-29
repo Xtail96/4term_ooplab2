@@ -11,6 +11,15 @@
 const double eps = 0.0001;
 const double epsStep = eps / 10;
 
+struct Color
+{
+    size_t red;
+    size_t green;
+    size_t blue;
+
+    Color(size_t r = 0, size_t g = 0, size_t b = 0) :
+        red(r), green(g), blue(b) {}
+};
 
 class Shape
 {
@@ -23,15 +32,16 @@ protected:
     Point center_coordinates;
     double current_angle;
     double current_scale;
-    std::string current_color;
+    Color current_color;
 
-    Shape(double x, double y, double angle = 0, double scale = 1, std::string color = "#000") : id(counter++)
+    Shape(double x, double y, double angle = 0, double scale = 1, Color color = Color(0, 0, 0)) :
+        id(counter++),
+        current_angle(angle),
+        current_scale(scale),
+        current_color(color)
     {
         center_coordinates.x = x;
         center_coordinates.y = y;
-        setAngle(angle);
-        current_scale = scale;
-        current_color = color;
     }
     virtual void print(std::ostream &os) = 0;
 
@@ -40,8 +50,8 @@ protected:
 
 public:
     virtual ~Shape(){}
-    void setColor(std::string color);
-    std::string getColor() const;
+    void setColor(Color color);
+    Color getColor() const;
     Point getPosition() const;
     void setPosition(Point p);
     double getAngle() const;
