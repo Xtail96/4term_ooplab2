@@ -8,7 +8,7 @@ protected:
     double aHalfAxis;
     double bHalfAxis;
 public:
-    Ellipse(double x, double y, double aHalfAxis, double bHalfAxis, double angle = 0, double scale = 1, std::string color = "#000")
+    Ellipse(double x, double y, double aHalfAxis, double bHalfAxis, double angle = 0, double scale = 1, Color color = Color(0, 0, 0))
         : Shape(x, y, angle, scale, color), aHalfAxis(aHalfAxis), bHalfAxis(bHalfAxis){}
     virtual ~Ellipse() {}
     void setAxis(std::pair<double, double> p);

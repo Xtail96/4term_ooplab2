@@ -63,3 +63,63 @@ TEST(Round_Round_TestSet, CircleNoPoints)
 
     EXPECT_EQ(result, 0);
 }
+
+TEST(Round_Ellipse_TestSet, RoundEllipse4Points)
+{
+    Round r(0, 0, 2);
+    Ellipse e(0, 0, 1, 3);
+
+    int result = e.intersect(r);
+
+    EXPECT_EQ(result, 4);
+}
+
+TEST(Round_Ellipse_TestSet, RoundRotatedEllipse4Points)
+{
+    Round r(0, 0, 2);
+    Ellipse e(0, 0, 1, 3, M_PI/4);
+
+    int result = e.intersect(r);
+
+    EXPECT_EQ(result, 4);
+}
+
+TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsY)
+{
+    Round r(0, 0, 2);
+    Ellipse e(0, 0, 3, 2, M_PI/4);
+
+    int result = e.intersect(r);
+
+    EXPECT_EQ(result, 2);
+}
+
+/*TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsX)
+{
+    Round r(0, 0, 2);
+    Ellipse e(0, 0, 2, 3, M_PI/4);
+
+    int result = e.intersect(r);
+
+    EXPECT_EQ(result, 2);
+}*/
+
+TEST(Ellipse_Ellipse_TestSet, EllipseEllipse4Points)
+{
+    Ellipse e1(0, 0, 2, 3);
+    Ellipse e2(0, 0, 3, 2);
+
+    int result = e2.intersect(e1);
+
+    EXPECT_EQ(result, 4);
+}
+
+TEST(Ellipse_Ellipse_TestSet, RotatedEllipseRotatedEllipse4Points)
+{
+    Ellipse e1(0, 0, 2, 3, M_PI/4);
+    Ellipse e2(0, 0, 3, 2, M_PI/4);
+
+    int result = e2.intersect(e1);
+
+    EXPECT_EQ(result, 4);
+}

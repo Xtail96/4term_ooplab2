@@ -5,7 +5,7 @@
 class Round : public Arc
 {
 public:
-    Round(double x, double y, double radius, double angle = 0, double scale = 1, std::string color = "#000")
+    Round(double x, double y, double radius, double angle = 0, double scale = 1, Color color = Color(0, 0, 0))
         : Arc(x, y, 0, 2*M_PI, radius, angle, scale, color){}
     virtual ~Round(){}
 
