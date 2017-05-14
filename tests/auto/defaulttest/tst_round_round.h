@@ -166,3 +166,23 @@ TEST(Arc_Arc_TestSet, DefaultArcDefaultArc1Points)
 
     EXPECT_EQ(result, 1);
 }
+
+TEST(Round_Arc_TestSet, DefaultRoundDefaultArc1Points)
+{
+    Round r1(0, 0, 3);
+    Arc a1(5, 0, 0, M_PI, 3);
+
+    int result = r1.intersect(a1);
+
+    EXPECT_EQ(result, 1);
+}
+
+TEST(Round_Arc_TestSet, DefaultRoundDefaultArcMach)
+{
+    Round r1(0, 0, 3);
+    Arc a1(0, 0, 0, M_PI, 3);
+
+    int result = r1.intersect(a1);
+
+    EXPECT_EQ(result, -1);
+}
