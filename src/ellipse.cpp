@@ -23,7 +23,7 @@ int Ellipse::intersect(Shape &s2) const
             return -1;
     }
 
-    for(double t = 0; t < 2*M_PI; t+=epsStep)
+    for(double t = -M_PI; t < M_PI; t+=epsStep)
     {
         x = aHalfAxis * cos(t) + center_coordinates.x;
         y = bHalfAxis * sin(t) + center_coordinates.y;
@@ -44,6 +44,14 @@ int Ellipse::intersect(Shape &s2) const
                 inside = false;
         }
     }
+
+    // если начальная точка является точкой пересечения, мы посчитали ее два раза
+    x = aHalfAxis * cos(-M_PI) + center_coordinates.x;
+    y = bHalfAxis * sin(-M_PI) + center_coordinates.y;
+    if (s2.isPointOnBorder(Point(x, y)))
+        intersectCount--;
+
+
     return intersectCount;
 }
 void Ellipse::scale(double scale)
