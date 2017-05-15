@@ -7,10 +7,18 @@ using namespace testing;
 
 TEST(Round_Round_TestSet, CircleTwoPoints)
 {
-    Round r1(0, 0, 1);
-    Round r2(0, 1, 1);
+    //Round r1(0, 0, 1);
+    //Round r2(0, 1, 1);
 
-    int result = r2.intersect(r1);
+    //Arc a1(0, 0, 0, 2*M_PI, 3);
+    //Arc a2(5, 0, 0, 2*M_PI, 3);
+
+    Round a1(0, 0, 3);
+    Round a2(5, 0, 3);
+
+    //int result = r2.intersect(r1);
+
+    int result = a2.intersect(a1);
 
     EXPECT_EQ(result, 2);
 }
@@ -148,8 +156,8 @@ TEST(Arc_Ellipse_TestSet, DefaultArcDefaultEllipse0Points)
 
 TEST(Arc_Arc_TestSet, DefaultArcDefaultArc2Points)
 {
-    Arc a1(5, 0, M_PI/2, 3*M_PI/2, 3);
-    Arc a2(0, 0, -3*M_PI/2, M_PI/2, 3);
+    Arc a1(5, 0, M_PI/2, (3/2)*M_PI, 3);
+    Arc a2(0, 0, -M_PI/2, M_PI/2, 3);
 
     int result = a1.intersect(a2);
 
@@ -159,8 +167,8 @@ TEST(Arc_Arc_TestSet, DefaultArcDefaultArc2Points)
 
 TEST(Arc_Arc_TestSet, DefaultArcDefaultArc1Points)
 {
-    Arc a1(5, 0, 0, M_PI, 3);
-    Arc a2(0, 0, 0, M_PI, 3);
+    Arc a1(-5, 0, 0, M_PI, 3);
+    Arc a2(-10, 0, 0, M_PI, 3);
 
     int result = a1.intersect(a2);
 
@@ -170,11 +178,11 @@ TEST(Arc_Arc_TestSet, DefaultArcDefaultArc1Points)
 TEST(Round_Arc_TestSet, DefaultRoundDefaultArc1Points)
 {
     Round r1(0, 0, 3);
-    Arc a1(5, 0, 0, M_PI, 3);
+    Arc a1(-5, 0, 0, 2*M_PI, 3);
 
     int result = r1.intersect(a1);
 
-    EXPECT_EQ(result, 1);
+    EXPECT_EQ(result, 2);
 }
 
 TEST(Round_Arc_TestSet, DefaultRoundDefaultArcMach)
@@ -185,4 +193,14 @@ TEST(Round_Arc_TestSet, DefaultRoundDefaultArcMach)
     int result = r1.intersect(a1);
 
     EXPECT_EQ(result, -1);
+}
+
+TEST(Round_Arc_TestSet, DefaultRoundNegativeCenterArc2points)
+{
+    Round r1(0, 0, 2);
+    Arc a1(-3, 3, -(M_PI/2), M_PI/2, 4);
+
+    int result = a1.intersect(r1);
+
+    EXPECT_EQ(result, 2);
 }
