@@ -31,11 +31,10 @@ bool Arc::isPointOnBorder(const Point &p) const
     double dx = r.x - center_coordinates.x;
     double dy = r.y - center_coordinates.y;
     bool borderFlag = fabs(pow(dx, 2) + pow(dy, 2) - pow(radius, 2)) < eps;
-    double pointAngle = atan(dy/dx);
+    double pointAngle = atan2(dy, dx);
     bool startAngleFlag = pointAngle >= startAngle;
     bool finishAngleFlag = pointAngle <= finishAngle;
     return (borderFlag && startAngleFlag && finishAngleFlag);
-    //return borderFlag;
 }
 
 bool Arc::match(const Arc &other) const
