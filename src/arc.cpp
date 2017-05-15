@@ -67,6 +67,10 @@ int Arc::intersect(Shape &s2) const
             return -1;
     }
 
+    // проверка на 0 радиус
+    if (AreSame(radius, 0))
+        return (s2.isPointOnBorder(center_coordinates) ? 1 : 0);
+
     // идем по фигуре с шагом epsStep и считаем, сколько точек попало в область s2
     for(double t = startAngle; t < finishAngle; t+=epsStep)
     {
@@ -89,6 +93,15 @@ int Arc::intersect(Shape &s2) const
                 inside = false;
         }
     }
+
+    // если начальная и конечная точки совпадают, уменьшаем число точек, поскольку мы дважды посчитали одну и ту же точку
+    double xstart = radius * cos(startAngle) + center_coordinates.x;
+    double ystart = radius * sin(startAngle) + center_coordinates.y;
+    double xfinish = radius * cos(finishAngle) + center_coordinates.x;
+    double yfinish = radius * sin(finishAngle) + center_coordinates.y;
+
+    if (AreSame(xstart, xfinish) && AreSame(ystart, yfinish) && s2.isPointOnBorder(Point(xstart, ystart)))
+        intersectCount--;
 
     return intersectCount;
 }
