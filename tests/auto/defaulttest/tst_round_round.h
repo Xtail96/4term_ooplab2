@@ -114,7 +114,7 @@ TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsY)
     EXPECT_EQ(result, 2);
 }
 
-/*TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsX)
+TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsX)
 {
     Round r(0, 0, 2);
     Ellipse e(0, 0, 2, 3, M_PI/4);
@@ -122,7 +122,7 @@ TEST(Round_Ellipse_TestSet, RoundRotatedEllipse2PointsY)
     int result = e.intersect(r);
 
     EXPECT_EQ(result, 2);
-}*/
+}
 
 TEST(Ellipse_Ellipse_TestSet, EllipseEllipse4Points)
 {
@@ -156,7 +156,7 @@ TEST(Arc_Ellipse_TestSet, DefaultArcDefaultEllipse0Points)
 
 TEST(Arc_Arc_TestSet, DefaultArcDefaultArc2Points)
 {
-    Arc a1(5, 0, M_PI/2, (3/2)*M_PI, 3);
+    Arc a1(5, 0, M_PI/2, 3*M_PI/2, 3);
     Arc a2(0, 0, -M_PI/2, M_PI/2, 3);
 
     int result = a1.intersect(a2);
