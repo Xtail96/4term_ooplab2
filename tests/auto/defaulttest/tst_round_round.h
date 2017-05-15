@@ -149,7 +149,7 @@ TEST(Arc_Ellipse_TestSet, DefaultArcDefaultEllipse0Points)
 TEST(Arc_Arc_TestSet, DefaultArcDefaultArc2Points)
 {
     Arc a1(5, 0, M_PI/2, 3*M_PI/2, 3);
-    Arc a2(0, 0, -3*M_PI/2, M_PI/2, 3);
+    Arc a2(0, 0, -M_PI/2, M_PI/2, 3);
 
     int result = a1.intersect(a2);
 

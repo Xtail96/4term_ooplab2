@@ -22,7 +22,7 @@ void Round::print(std::ostream &os)
 bool Round::isPointOnBorder(const Point &p) const
 {
     Point r = p;
-    r.rotate(current_angle);
+    r.rotate(-current_angle);
     double dx = (r.x - center_coordinates.x);
     double dy = (r.y - center_coordinates.y);
     bool borderFlag = fabs(pow(dx, 2) + pow(dy, 2) - pow(radius, 2)) < eps;
