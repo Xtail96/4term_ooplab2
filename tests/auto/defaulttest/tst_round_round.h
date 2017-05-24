@@ -144,16 +144,6 @@ TEST(Ellipse_Ellipse_TestSet, RotatedEllipseRotatedEllipse4Points)
     EXPECT_EQ(result, 4);
 }
 
-TEST(Arc_Ellipse_TestSet, DefaultArcDefaultEllipse0Points)
-{
-    Arc a1(0, 0, -M_PI/2, M_PI, 5);
-    Ellipse e2(0, 0, 7, 3, 0);
-
-    int result = e2.intersect(a1);
-
-    EXPECT_EQ(result, 3);
-}
-
 TEST(Arc_Ellipse_TestSet, DefaultArcDefaultEllipse2Points)
 {
     Arc a1(0, 0, 0, M_PI/2, 1);
